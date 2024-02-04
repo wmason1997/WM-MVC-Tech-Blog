@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         include: [
             {
                 model: User,
-                attributes: ['title'],
+                attributes: ['name'],
             },
         ],
     });
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     });
 
     } catch (error) {
-        res.status(500).json(err);
+        res.status(500).json(error);
     }
 });
 
@@ -44,8 +44,8 @@ router.get('/blog/:id', async (req, res) => {
             logged_in: req.session.logged_in
         });
         
-    } catch (err) {
-        res.status(500).json(err);
+    } catch (error) {
+        res.status(500).json(error);
     }
 });
 
@@ -65,7 +65,7 @@ router.get('/profile', withAuth, async (req, res) => {
             logged_in: true
         });
     } catch (error) {
-        res.status(500).json(err);
+        res.status(500).json(error);
     }
 });
 
