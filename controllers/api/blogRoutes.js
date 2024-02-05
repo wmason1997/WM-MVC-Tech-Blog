@@ -9,7 +9,8 @@ router.post('/', withAuth, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id,
         });
-        res.json(newBlog);
+        
+        res.status(200).json(newBlog);
         console.log("goodbye");
     } catch (error) {
         res.status(400).json(error);

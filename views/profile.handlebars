@@ -1,4 +1,4 @@
-<div class="row">
+{{!-- <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{user.name}}!</h2>
   </div>
@@ -14,7 +14,7 @@
         <input class="form-input" type="text" id="blog-name" name="blog-name" />
       </div>
       <div class="form-group">
-        <label for="blog-desc">description:</label>
+        <label for="blog-desc">Content:</label>
         <textarea class="form-input" id="blog-desc" name="blog-desc"></textarea>
       </div>
       <div class="form-group">
@@ -30,17 +30,67 @@
     
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/blog/{{blogs.id}}">{{blogs.title}}</a></h4>
+        <h4><a href="/blog/{{id}}">{{title}}</a></h4>
       </div>
       <div class="col-md-4">
-        <p>Title: {{blogs.title}}</p>
-        <p>Content: {{blogs.content}}</p>
-        <button class="btn btn-sm btn-danger" data-id="{{blogs.id}}">DELETE</button>
+        {{#each user.blogs}}
+        <p>Title: {{user.blog.title}}</p>
+        <p>Content: {{user.blog.content}}</p>
+        <button class="btn btn-sm btn-danger" data-id="{{user.blog.id}}">DELETE</button>
+        {{/each}}
       </div>
     </div>
     
   
   {{/if}}
+  </div>
+</div>
+
+<script src="./js/profile.js"></script> --}}
+
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Create a New Blog:</h3>
+        <form class="form new-blog-form">
+      <div class="form-group">
+        <label for="blog-name">Blog name:</label>
+        <input class="form-input" type="text" id="blog-name" name="blog-name" />
+      </div>
+      <div class="form-group">
+        <label for="blog-desc">Content:</label>
+        <textarea class="form-input" id="blog-desc" name="blog-desc"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-6 blog-list">
+    {{#if blogs.length}}
+      <h3>Current blogs:</h3>
+
+      {{#each blogs}}
+        <div class="row mb-2">
+          <div class="col-md-8">
+            <h4><a href="/blog/{{id}}">{{title}}</a></h4>
+          </div>
+          <div class="col-md-4">
+            <p>Title: {{title}}</p>
+            <p>Content: {{content}}</p>
+            <button class="btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
+          </div>
+        </div>
+      {{/each}}
+    {{else}}
+      <p>No blogs available.</p>
+    {{/if}}
   </div>
 </div>
 
