@@ -21,7 +21,7 @@ const newFormHandler = async (event) => {
     }
   };
   
-  const delButtonHandler = async (event) => {
+const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
@@ -36,6 +36,20 @@ const newFormHandler = async (event) => {
       }
     }
   };
+
+// Add addCommentHandler
+const addCommentHandler = async (event) => {
+  event.preventDefault();
+
+  const comment_body = document.querySelector('.new-comment-body').value.trim();
+
+  if (comment_body) {
+    // fill in with POST route like on lines 8-19 above
+  }
+}
+
+  // Add editCommentHandler
+  // Add deleteCommentHandler
   
   document
     .querySelector('.new-blog-form')
@@ -44,3 +58,7 @@ const newFormHandler = async (event) => {
   document
     .querySelector('.blog-list')
     .addEventListener('click', delButtonHandler);
+
+//addCommentHandler event listener
+//editCommentHandler event listener
+//deleteCommentHandler

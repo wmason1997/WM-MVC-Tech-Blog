@@ -30,6 +30,11 @@ Comment.init(
             allowNull: false,
             defaultValue: DataTypes.NOW,
         },
+        comment_body: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            defaultValue: "42",
+        }
     },
     {
         sequelize,
