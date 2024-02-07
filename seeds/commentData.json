@@ -1,0 +1,12 @@
+[
+    {
+        "user_id": 1,
+        "blog_id": 1,
+        "comment_body": "Bro really onto something."
+    },
+    {
+        "user_id": 2,
+        "blog_id": 1,
+        "comment_body": "Nah, Chiefs are GOATED."
+    }
+]
