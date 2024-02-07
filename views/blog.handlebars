@@ -2,4 +2,10 @@
     <h2>{{blog.title}}</h2>
     <p>{{blog.content}}</p>
     <p>Created on {{format_date blog.date_created}}</p>
+        <form class="form new-comment-form">
+      <label for = "new-comment">Comment: </label>
+      <input class = "form-input" type="text" id = "new-comment-id" />
+      <button type="submit" class = "btn btn-primary">Add</button>
+    </form>
 </div>
+
