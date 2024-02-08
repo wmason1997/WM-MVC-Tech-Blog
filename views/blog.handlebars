@@ -2,6 +2,7 @@
   <h2>{{blog.title}}</h2>
   <p>{{blog.content}}</p>
   <p>Created on {{format_date blog.date_created}}</p>
+
   <form class="form new-comment-form">
     <div class="form-group">
       <label for="new-comment-id">Comment: </label>
@@ -13,5 +14,31 @@
       id="new-comment-btn"
     >Add</button>
   </form>
+
+        <div class="comments-section">
+        <h3>Existing Comments</h3>
+        <ul class="comment-list">
+        
+        {{#each comments as |comment|}}
+          {{#if (eq comment.blog_id blog.id)}}
+            <p>Comment: {{comment.comment_body}}</p>
+          {{/if}}
+        {{/each}}
+        </ul>
+
+        {{!-- {{#each (list_all_comments_on_given_blog comments blog.id)}}
+          <li>{{this.comment_body}}</li>
+        {{/each}} --}}
+      {{!-- {{#if comments.length}}
+      {{#each comments}}
+        {{#if (eq comment.blog_id blog.id)}}
+          <p>Comment: {{comment.comment_body}}</p>
+        {{/if}}
+      {{/each}}
+    {{/if}} --}}
+
+         
+        </ul>
+    </div>
 
 </div>

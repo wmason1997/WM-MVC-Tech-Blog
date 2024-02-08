@@ -23,4 +23,11 @@ module.exports = {
         return `<span for="img" aria-label="gear">⚙️</span>`;
       }
     },
+    list_all_comments_on_given_blog: (comments, blogId) => {
+      if (!Array.isArray(comments)) {
+          return [];
+      }
+      return comments.filter(comment => comment.blog_id === blogId);
+  }
+  
   };

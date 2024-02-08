@@ -55,3 +55,5 @@ app.use((err, req, res, next) => {
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening at port ${PORT}`));
 });
+
+// Handlebars.registerHelper('this_blog_has_comments', function (comment, blogId)) // ASK NIRAV OR MICHAEL

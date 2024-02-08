@@ -10,14 +10,6 @@
     {{!-- Want to add a comment button here --}}
     <p>Created by {{blog.user.name}} on {{format_date blog.date_created}}</p>
     
-    {{!-- Are there any comments --}}
-    {{#if comments.length}}
-      {{#each comments}}
-        {{#if (eq comment.blog_id blog.id)}}
-          <p>Comment: {{comment.comment_body}}</p>
-        {{/if}}
-      {{/each}}
-    {{/if}}
   </div>
   <div class="col-md-7">
     <p>
