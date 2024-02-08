@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog } = require('../../models');
+const { Blog, Comment } = require('../../models');
 const withAuth = require ('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -43,8 +43,9 @@ router.post('/:id/comment', withAuth, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id,
         });
-
+        console.log("right before status 200");
         res.status(200).json(newComment);
+        console.log("right after status 200");
     } catch (error) {
         res.status(400).json(error);
     }
