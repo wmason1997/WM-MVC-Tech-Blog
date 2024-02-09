@@ -19,10 +19,13 @@
         <h3>Existing Comments</h3>
         <ul class="comment-list">
         
-        {{#each comments as |comment|}}
-          {{#if (eq comment.blog_id blog.id)}}
+        {{#each blog.comments as |comment|}}
+        {{log blog.comments}}
+        <h2>Comment Title</h2>
+          
+          
             <p>Comment: {{comment.comment_body}}</p>
-          {{/if}}
+          
         {{/each}}
         </ul>
 
