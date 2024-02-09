@@ -21,10 +21,17 @@
         
         {{#each blog.comments as |comment|}}
         {{log blog.comments}}
-        <h2>Comment Title</h2>
-          
-          
-            <p>Comment: {{comment.comment_body}}</p>
+
+          {{!-- Include associations to fetch user details --}}
+          {{#with comment.user}}
+          <p>User {{name}} said:</p>
+          {{/with}}
+
+
+
+          <p>{{comment.comment_body}}</p>
+          <p>Added: {{comment.date_created}}</p>
+          <br>
           
         {{/each}}
         </ul>
