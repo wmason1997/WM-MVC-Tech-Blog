@@ -22,8 +22,8 @@ const newFormHandler = async (event) => {
   };
   
 const delButtonHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
+    if (event.target.hasAttribute('data-del-id')) {
+      const id = event.target.getAttribute('data-del-id');
   
       const response = await fetch(`/api/blogs/${id}`, {
         method: 'DELETE',
@@ -37,20 +37,30 @@ const delButtonHandler = async (event) => {
     }
   };
 
-// Add addCommentHandler
 const addCommentHandler = async (event) => {
   event.preventDefault();
 
   const comment_body = document.querySelector('.new-comment-body').value.trim();
-
-  if (comment_body) {
-    // fill in with POST route like on lines 8-19 above
-  }
 }
 
-  // Add editCommentHandler
-  // Add deleteCommentHandler
-  
+// Add editBlogHandler
+const editBlogHandler = async (event) => {
+  if (event.target.hasAttribute('data-edit-id')) {
+    const id = event.target.getAttribute('data-edit-id');
+
+    const response = await fetch(`/api/blogs/${id}`, {
+      method: 'PUT',
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert('Failed to edit blog');
+    }
+  }
+};
+
+
   document
     .querySelector('.new-blog-form')
     .addEventListener('submit', newFormHandler);
@@ -59,6 +69,4 @@ const addCommentHandler = async (event) => {
     .querySelector('.blog-list')
     .addEventListener('click', delButtonHandler);
 
-//addCommentHandler event listener
-//editCommentHandler event listener
-//deleteCommentHandler
+// add editBlogHandler

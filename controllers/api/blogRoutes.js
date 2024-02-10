@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Blog, Comment } = require('../../models');
 const withAuth = require ('../../utils/auth');
 
+// Add Blog
 router.post('/', withAuth, async (req, res) => {
     try {
         console.log("hello");
@@ -17,6 +18,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
+// Delete blog
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const blogData = await Blog.destroy({
@@ -35,8 +37,29 @@ router.delete('/:id', withAuth, async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-})
+});
 
+// Update specific blog
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const blogData = await Blog.update({
+            title: req.params.title,
+            content: req.params.content,
+        },
+        {
+            where: {
+                id: req.params.id,
+                user_id: req.params.user_id,
+            },
+        }
+    );
+        res.status(200).json(blogData);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+// Add comment on a specific blog
 router.post('/:id/comment', withAuth, async (req, res) => {
     try {
         const newComment = await Comment.create({
@@ -50,5 +73,6 @@ router.post('/:id/comment', withAuth, async (req, res) => {
         res.status(400).json(error);
     }
 })
+
 
 module.exports = router;
