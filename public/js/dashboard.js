@@ -37,36 +37,87 @@ const delButtonHandler = async (event) => {
     }
   };
 
-const addCommentHandler = async (event) => {
-  event.preventDefault();
 
-  const comment_body = document.querySelector('.new-comment-body').value.trim();
-}
 
-// Add editBlogHandler
-const editBlogHandler = async (event) => {
-  if (event.target.hasAttribute('data-edit-id')) {
-    const id = event.target.getAttribute('data-edit-id');
+// New function for handling the click event on the "Edit" button
+const editPost = async (id) => {
+  console.log(`Editing post with ID: ${id}`)
+  const response = await fetch(`/blogs/${id}`);
+  const blog = await response.json();
 
+  // Set the editing flag for the specific blog to true
+  blog.editing = true;
+
+  // Render the updated view
+  updateView();
+};
+
+const saveChanges = async (id) => {
+  const title = document.getElementById('title').value.trim();
+  const content = document.getElementById('content').value.trim();
+
+  if (title && content) {
     const response = await fetch(`/api/blogs/${id}`, {
       method: 'PUT',
+      body: JSON.stringify({ title, content }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
     if (response.ok) {
-      document.location.replace('/dashboard');
+      // Set editing back to false after successfully saving changes
+      blog.editing = false;
+      updateView();
     } else {
-      alert('Failed to edit blog');
+      alert('Failed to save changes');
     }
   }
 };
 
+const addEventListeners = () => {
+  // Event listener for the "Create" button
+  document.querySelector('.new-blog-form').addEventListener('submit', newFormHandler);
 
-  document
-    .querySelector('.new-blog-form')
-    .addEventListener('submit', newFormHandler);
-  
-  document
-    .querySelector('.blog-list')
-    .addEventListener('click', delButtonHandler);
+  // Event listener for the "Delete" buttons in the blog list
+  document.querySelector('.btn-danger').addEventListener('click', (event) => {
+    if (event.target.hasAttribute('data-del-id')) {
+      delButtonHandler(event);
+    }
+  });
 
-// add editBlogHandler
+  // Event listener for the "Edit" buttons in the blog list
+  document.querySelector('.post-title').addEventListener('click', (event) => {
+    if (event.target.hasAttribute('data-edit-id')) {
+      const id = event.target.id;
+      //editPost(id);
+      console.log(id);
+    }
+  });
+
+  // Event listener for the "Save Changes" button (if present)
+  document.querySelector('.blog-list').addEventListener('click', (event) => {
+    if (event.target.hasAttribute('data-save-id')) {
+      const id = event.target.getAttribute('data-save-id');
+      saveChanges(id);
+    }
+  });
+};
+
+
+// Function to update the view based on the data
+const updateView = async (id) => {
+  id = 1;
+  const response = await fetch(`/api/blogs/${id}`);
+  const data = await response.json();
+  //const template = Handlebars.compile(document.getElementById('template').innerHTML);
+  //document.getElementById('app').innerHTML = template(data);
+
+
+};
+
+addEventListeners();
+
+
+
+updateView();

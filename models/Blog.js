@@ -13,6 +13,7 @@ Blog.init(
         },
         title: {
             type: DataTypes.STRING,
+            unique: true,
             allowNull: false,
         },
         content: {
