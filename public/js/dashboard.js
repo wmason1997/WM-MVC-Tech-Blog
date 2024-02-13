@@ -80,10 +80,13 @@ const addEventListeners = () => {
   document.querySelector('.new-blog-form').addEventListener('submit', newFormHandler);
 
   // Event listener for the "Delete" buttons in the blog list
-  document.querySelector('.btn-danger').addEventListener('click', (event) => {
-    if (event.target.hasAttribute('data-del-id')) {
-      delButtonHandler(event);
-    }
+  const deleteButtons = document.querySelectorAll('.btn-danger');
+  deleteButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      if (event.target.hasAttribute('data-del-id')) {
+        delButtonHandler(event);
+      }
+    });
   });
 
   // Event listener for the "Edit" buttons in the blog list
