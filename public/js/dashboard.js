@@ -87,10 +87,14 @@ const addEventListeners = () => {
   });
 
   // Event listener for the "Edit" buttons in the blog list
-  document.querySelector('.post-title').addEventListener('click', (event) => {
+  const editButtons = document.querySelectorAll('.post-title');
+  
+  editButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
     if (event.target.hasAttribute('data-edit-id')) {
+            
       const id = event.target.id;
-      //editPost(id);
+      editPost(id);
       console.log(id);
     }
   });
@@ -102,7 +106,7 @@ const addEventListeners = () => {
       saveChanges(id);
     }
   });
-};
+});
 
 
 // Function to update the view based on the data
@@ -119,5 +123,5 @@ const updateView = async (id) => {
 addEventListeners();
 
 
-
-updateView();
+}
+//updateView(id)
