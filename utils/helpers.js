@@ -29,6 +29,9 @@ module.exports = {
       }
       return comments.filter(comment => comment.blog_id === blogId);
   },
+    isEqual: (value1, value2) => {
+      return value1 === value2;
+    },
 
   
   };
