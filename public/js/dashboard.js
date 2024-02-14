@@ -37,7 +37,7 @@ const delButtonHandler = async (event) => {
     }
   };
 
-  let editing; // Declare the editing variable
+let editing_value=0; // Declare the editing variable
 
   // edit blog handler
 const editPost = async (id) => {
@@ -46,16 +46,17 @@ const editPost = async (id) => {
   //const blog = await response.json();
 
   // Set the editing flag for the specific blog to true
-  editing = id;
+  editing_value = id;
   console.log("Inside editPost");
-  console.log( {id, editing });
+  console.log( {id, editing_value });
+  //document.location.replace('/dashboard');
   // Render the updated view
   // updateView();
 };
 
   // save editable blog handler
 const saveChanges = async (id) => {
-  console.log("Inside saveChanges", { id, editing }); // log for debugging
+  console.log("Inside saveChanges", { id, editing_value }); // log for debugging
   const title = document.getElementById('title').value.trim();
   const content = document.getElementById('content').value.trim();
 
@@ -70,7 +71,7 @@ const saveChanges = async (id) => {
 
     if (response.ok) {
       // Set editing back to false after successfully saving changes
-      blog.editing = 0; // Number not equal to any blogs
+      blog.editing_value = 0; // Number not equal to any blogs
       //updateView();
     } else {
       alert('Failed to save changes');

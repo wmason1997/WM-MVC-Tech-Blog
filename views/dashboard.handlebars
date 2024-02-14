@@ -26,38 +26,41 @@
   <div class="col-md-6 blog-list">
     {{#if blogs.length}}
       <h3>Current blogs:</h3>
+      {{!-- Add this line to display the value of 'editing' --}}
+      
 
-      {{#each blogs}}
+{{#each blogs}}
   <div id="app">
     <div class="row mb-2">
       <div class="col-md-8">
         <h4><a href="/blog/{{id}}">{{id}}</a></h4>
       </div>
-{{#if (isEqual editing id)}}
-{{log editing}}
-{{log id}}
-  <form>
-    <label for="title">Title:</label>
-    <input type="text" id="title" value="{{title}}">
-    
-    <label for="content">Content:</label>
-    <textarea id="content">{{content}}</textarea>
-    
-    <button id="{{id}}" class="post-title-save" type="button" data-save-id="{{id}}">Save Changes</button>
-  </form>
-{{else}}
-  <h1>{{title}}</h1>
-  <p>{{content}}</p>
-  <button id="{{id}}" class="post-title-edit" data-edit-id="{{id}}">EDIT</button>
-{{/if}}
-
-
+      <script>
+        console.log("Editing state:", {{editing_value}});
+        console.log("ID:", {{id}});
+      </script>
+      {{#if (isEqual editing_value id)}}
+        <form>
+          <label for="title">Title:</label>
+          <input type="text" id="title" value="{{title}}">
+          
+          <label for="content">Content:</label>
+          <textarea id="content">{{content}}</textarea>
+          
+          <button id="{{id}}" class="post-title-save" type="button" data-save-id="{{id}}">Save Changes</button>
+        </form>
+      {{else}}
+        <h1>{{title}}</h1>
+        <p>{{content}}</p>
+        <button id="{{id}}" class="post-title-edit" data-edit-id="{{id}}">EDIT</button>
+      {{/if}}
       <button class="btn btn-sm btn-danger" data-del-id="{{id}}">DELETE</button>
     </div>
   </div>
   <br>
   <br>
 {{/each}}
+
 
     {{else}}
       <p>No blogs available.</p>
