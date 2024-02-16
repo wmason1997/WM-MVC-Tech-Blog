@@ -43,6 +43,9 @@ I have updated the package.json file so that this command seeds data AND runs th
 ![Individual Blog Page](/assets/images/MVC-Tech-Blog-Screenshot-4.png)
 
 ## Credits <a name = "credits"></a>
+I met with tutor Jacob Carver on February 10, 2024 and we spent a couple of hours debugging in an attempt to enable a logged-in user to edit their own posts. We were not successful as of yet, but I feel our approach of toggling the handlebars state from editing to saved is a sound one. I hope to figure this out in future development.
+
+This project is largely based off the mini-project in the MVC module from the [UCSD-VIRT-FSF-PT-09-2023-U-LOLC](https://git.bootcampcontent.com/University-of-California---San-Diego/UCSD-VIRT-FSF-PT-09-2023-U-LOLC) GitLab repository.
 
 ## Contributing <a name="contribution-guidelines"></a>
 Be respectful and please reach out.
