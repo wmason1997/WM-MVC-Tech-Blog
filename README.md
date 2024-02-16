@@ -31,10 +31,9 @@ npm i
 
 ## Usage <a name="usage-instructions"></a>
 ```md
+npm run seed
 npm run start
 ```
-
-I have updated the package.json file so that this command seeds data AND runs the server.
 
 ## Screenshots <a name="screenshots"></a>
 ![Landing Page](/assets/images/MVC-Tech-Blog-Screenshot-1.png)
