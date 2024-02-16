@@ -17,9 +17,7 @@ const newCommentHandler = async (event) => {
         });
 
         if (response.ok) {
-            alert("response was ok");
             document.location.replace(`/blog/${blog_id}`);
-            alert("page was refreshed.")
         } else {
             alert('Failed to add comment');
         }

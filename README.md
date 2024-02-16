@@ -11,10 +11,10 @@
 * [Questions](#questions)
 
 ## Description <a name="description"></a> 
-This project is a CMS-style blog site similar to a Wordpress site, where developers can publish blogs and comment on other developers' posts as well. This project follows an MVC architecture. Handlebars.js is the templating language, Sequelize is the ORM and the expression-session npm package was used for authentication. The dotenv package was used to employ environment variables and the bcrypt package to hash passwords.
+This project is a CMS-style blog site similar to a Wordpress site, where developers can publish blogs and comment on other developers' posts as well. This project follows an MVC architecture. Handlebars.js is the templating language, Sequelize is the ORM and the expression-session npm package was used for authentication. The dotenv package was used to employ environment variables and the bcrypt package to hash passwords. We have used Heroku below to deploy it.
 
 ## Deployed Application <a name="deployed-application"></a>
-[Deployed App]()
+[Deployed App](https://floating-mesa-81884-406a0e038629.herokuapp.com/)
 
 ## Installation <a name="installation-instructions"></a>
 Clone this repository locally. Add a .env file and add
