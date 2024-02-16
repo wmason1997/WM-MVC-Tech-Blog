@@ -6,30 +6,34 @@
 * [Description](#description)
 * [Installation](#installation-instructions)
 * [Usage](#usage-instructions)
-* [License](#license)
+* [Screenshots](#screenshots)
 * [Contributing](#contribution-guidelines)
-* [Tests](#tests)
 * [Questions](#questions)
 
 ## Description <a name="description"></a> 
 This project is a CMS-style blog site similar to a Wordpress site, where developers can publish blogs and comment on other developers' posts as well. This project follows an MVC architecture. Handlebars.js is the templating language, Sequelize is the ORM and expression-session npm package was used for authentication.
 
 ## Installation <a name="installation-instructions"></a>
-git clone, npm i
+Clone this repository locally.
+
+Then, open the terminal and run:
+```md
+npm i
+```
 
 ## Usage <a name="usage-instructions"></a>
+```md
 npm run start
+```
 
-## License <a name="license"></a>
-  This project's license is MIT License.<br>  
-  The website for this license is [https://opensource.org/license/mit/](https://opensource.org/license/mit/).
-  
+I have updated the package.json file so that this command seeds data AND runs the server.
+
+## Screenshots <a name="screenshots"></a>
 
 ## Contributing <a name="contribution-guidelines"></a>
 Be respectful and please reach out.
 
-## Tests <a name="tests"></a> 
-N/A
+
 
 ## Questions
 Please feel free to reach out to me with questions or suggestions for this app.<br>
