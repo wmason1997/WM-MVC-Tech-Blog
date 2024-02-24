@@ -2,6 +2,28 @@ const router = require('express').Router();
 const { Blog, Comment } = require('../../models');
 const withAuth = require ('../../utils/auth');
 
+// Get Blog
+router.get('/:id', async (req, res) => {
+    try {
+        const blogData = await Blog.findByPk(req.params.id, {
+            include: [
+                {
+                    model: Comment,
+                    include: User,
+                },
+            ],
+        });
+
+        const blog = blogData.get({ plain: true });
+        console.log('Blog Data:', blog);
+
+        res.json(blog); // Send blog data as JSON response
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // Add Blog
 router.post('/', withAuth, async (req, res) => {
     try {

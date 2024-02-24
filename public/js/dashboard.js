@@ -37,6 +37,28 @@ const delButtonHandler = async (event) => {
     }
   };
 
+// Update View function to be used whenever toggled between editing and saving states
+function updateView(data) {
+  // Clear the current view
+  clearView();
+
+  // Update the view based on the data
+  data.forEach(item => {
+      const element = document.createElement('div');
+      element.textContent = item.name;
+      document.getElementById('app').appendChild(element);
+  });
+}
+
+function clearView() {
+  const appElement = document.getElementById('app');
+  if (appElement) {
+      while (appElement.firstChild) {
+          appElement.removeChild(appElement.firstChild);
+      }
+  }
+};
+
 let editing_value=0; // Declare the editing variable
 
   // edit blog handler
@@ -47,37 +69,24 @@ const editPost = async (id) => {
 
   // Set the editing flag for the specific blog to true
   editing_value = id;
-  console.log("Inside editPost");
-  console.log( {id, editing_value });
+  console.log("Inside editPost", {id, editing_value });
   //document.location.replace('/dashboard');
   // Render the updated view
-  updateView();
+
+  // Fetch the updated data for the post with the given ID
+  const response = await fetch(`/api/blogs/${id}`, {
+    method: 'GET', 
+    body: JSON.stringify({ title, content }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const updatedPost = await response.json();
+
+  //Render the updated view with the new data
+  updateView([updatedPost]);
 };
 
-//   // save editable blog handler
-// const saveChanges = async (id) => {
-//   console.log("Inside saveChanges", { id, editing_value }); // log for debugging
-//   const title = document.getElementById('title').value.trim();
-//   const content = document.getElementById('content').value.trim();
-
-//   if (title && content) {
-//     const response = await fetch(`/api/blogs/${id}`, {
-//       method: 'PUT',
-//       body: JSON.stringify({ title, content }),
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     });
-
-//     if (response.ok) {
-//       // Set editing back to false after successfully saving changes
-//       blog.editing_value = 0; // Number not equal to any blogs
-//       //updateView();
-//     } else {
-//       alert('Failed to save changes');
-//     }
-//   }
-// };
 
 const saveChanges = async (id) => {
   const title = document.getElementById('title').value.trim();
