@@ -51,12 +51,35 @@ const editPost = async (id) => {
   console.log( {id, editing_value });
   //document.location.replace('/dashboard');
   // Render the updated view
-  // updateView();
+  updateView();
 };
 
-  // save editable blog handler
+//   // save editable blog handler
+// const saveChanges = async (id) => {
+//   console.log("Inside saveChanges", { id, editing_value }); // log for debugging
+//   const title = document.getElementById('title').value.trim();
+//   const content = document.getElementById('content').value.trim();
+
+//   if (title && content) {
+//     const response = await fetch(`/api/blogs/${id}`, {
+//       method: 'PUT',
+//       body: JSON.stringify({ title, content }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
+
+//     if (response.ok) {
+//       // Set editing back to false after successfully saving changes
+//       blog.editing_value = 0; // Number not equal to any blogs
+//       //updateView();
+//     } else {
+//       alert('Failed to save changes');
+//     }
+//   }
+// };
+
 const saveChanges = async (id) => {
-  console.log("Inside saveChanges", { id, editing_value }); // log for debugging
   const title = document.getElementById('title').value.trim();
   const content = document.getElementById('content').value.trim();
 
@@ -70,9 +93,8 @@ const saveChanges = async (id) => {
     });
 
     if (response.ok) {
-      // Set editing back to false after successfully saving changes
-      blog.editing_value = 0; // Number not equal to any blogs
-      //updateView();
+      editing_value = 0; // Reset editing flag
+      updateView(); // Update the view after saving changes
     } else {
       alert('Failed to save changes');
     }

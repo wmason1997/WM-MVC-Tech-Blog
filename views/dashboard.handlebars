@@ -29,7 +29,7 @@
       {{!-- Add this line to display the value of 'editing' --}}
       
 
-{{#each blogs}}
+{{!-- {{#each blogs}}
   <div id="app">
     <div class="row mb-2">
       <div class="col-md-8">
@@ -59,6 +59,28 @@
   </div>
   <br>
   <br>
+{{/each}} --}}
+
+{{#each blogs}}
+  <div class="row mb-2">
+    <div class="col-md-8">
+      <h4><a href="/blog/{{id}}">{{id}}</a></h4>
+    </div>
+    {{#if (isEqual editing_value id)}}
+      <form>
+        <label for="title">Title:</label>
+        <input type="text" id="title" value="{{title}}">
+        <label for="content">Content:</label>
+        <textarea id="content">{{content}}</textarea>
+        <button id="{{id}}" class="post-title-save" type="button" data-save-id="{{id}}">Save Changes</button>
+      </form>
+    {{else}}
+      <h1>{{title}}</h1>
+      <p>{{content}}</p>
+      <button id="{{id}}" class="post-title-edit" data-edit-id="{{id}}">EDIT</button>
+    {{/if}}
+    <button class="btn btn-sm btn-danger" data-del-id="{{id}}">DELETE</button>
+  </div>
 {{/each}}
 
 
